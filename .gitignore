@@ -1,0 +1,18 @@
+## [Visual Studio 缓存]
+.vs/
+
+## [编译生成的二进制文件]
+bin/
+obj/
+
+## [用户特定文件]
+*.user
+*.userosscache
+*.sln.docstates
+
+## [NuGet 包文件夹]
+# 如果你使用的是新版 .NET，包通常不在项目下，但加上这行以防万一
+packages/
+
+## [发布输出文件夹]
+publish/
