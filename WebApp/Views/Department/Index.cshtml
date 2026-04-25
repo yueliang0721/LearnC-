@@ -1,0 +1,46 @@
+﻿@using WebApp.Model;
+@model List<Department>
+@{
+	Layout = "_Layout";
+	ViewBag.Title = "Department List";
+}
+
+@section title_section{
+	<h1>DepartmentList</h1>
+}
+
+@await Html.PartialAsync("_SearchBar")
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Email</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody id="Department-List">
+	</tbody>
+</table>
+
+<a class="btn btn-primary" href="/Department/Create">Add</a>
+
+
+@section scripts{
+	<script>
+
+		ShowSearchResult();
+
+		async function ShowSearchResult()
+		{
+			const ListDiv = document.querySelector("#Department-List");
+			const filter = document.getElementById('filterInput').value;
+			var response = await fetch(`/Department/SearchDepartment?filter=${filter}`);
+			var html = await response.text();
+			ListDiv.innerHTML = html;
+		}
+	</script>
+}
+
+
+

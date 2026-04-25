@@ -1,0 +1,8 @@
+﻿@using WebApp.Model
+@model Department
+<tr>
+	<td>@Model.Name</td>
+	<td>@Model.Describe</td>
+	<td>@Model.Email</td>
+	<td><a class="btn btn-link" href="/Department/Edit/@Model.Id">Edit</a></td>
+</tr>

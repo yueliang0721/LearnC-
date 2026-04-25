@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "_Layout";
+    ViewBag.Title = "Edit Department";
+}
+@using WebApp.Model
+@model Department
+
+
+<form action="/Department/UpdateDepartment" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <span>ID:</span>
+    <input asp-for="Id" value="@Model.Id" readonly/>
+    <br />
+    <br />
+    <span>name:</span>
+    <input asp-for="Name" value="@Model.Name" />
+    <span class=" text-danger" asp-validation-for="Name"></span>
+    <br />
+    <br />
+    <span>Describe:</span>
+    <input asp-for="Describe" value="@Model.Describe" />
+    <span class=" text-danger" asp-validation-for="Describe"></span>
+    <br />
+    <br />
+    <span>Email:</span>
+    <input asp-for="Email" value="@Model.Email" />
+    <span class="text-danger" asp-validation-for="Email"></span>
+    <br />
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button> <span> </span>
+    <a class=" btn btn-warning" href="/Department/Delete/@Model.Id">Delete</a>
+    
+</form>
+<a href="/Department/index" class="btn btn-secondary">Cancel</a>
+
+
+

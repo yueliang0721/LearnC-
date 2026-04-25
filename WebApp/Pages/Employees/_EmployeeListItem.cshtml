@@ -1,0 +1,9 @@
+﻿@model Employee
+
+<tr>
+	<td>@Model.Name</td>
+	<td>@Model.Position</td>
+	<td>@Model.Salary</td>
+	<td><a class="btn btn-link" asp-controller="Department" asp-action="Detail" asp-route-id=@Model.DepartmentId>@Model.Department?.Name</a></td>
+	<td><a class="btn btn-link" href="/Employees/Edit/@Model.Id">Edit</a></td>
+</tr>

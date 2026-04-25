@@ -1,0 +1,26 @@
+﻿@page "{departmentId:int?}"
+@model WebApp.Pages.Employees.DepartmentEmployeesModel
+@{
+}
+
+@section title_section{
+	<h1>Employees Of Department: @Model.DepartmentName</h1>
+}
+
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Position</th>
+			<th>Salary</th>
+			<th>Department</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@* @await Component.InvokeAsync("EmployeeList", new { filter = "", departmentId = Model.DepartmentId }) *@
+		<vc:employee-list filter="" department-id="@Model.DepartmentId"></vc:employee-list>
+	</tbody>
+</table>
+

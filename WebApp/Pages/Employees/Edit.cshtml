@@ -1,0 +1,32 @@
+﻿@page "{EmployeeId:int}"
+@model WebApp.Pages.Employees.EditModel
+@{
+	ViewBag.Action = "Edit";
+}
+
+@section title_section {
+	<h3>Edit Employee</h3>
+}
+
+<partial name="_EmployeeDetail" model="Model.ViewModel" />
+
+<form name="delete-employee" method="post" action="/Employees/Edit/@Model.EmployeeId?handler=DeleteEmployee">
+	@Html.AntiForgeryToken()
+	<button type="submit" class="btn btn-danger" id="delete-employee">Delete</button>
+</form>
+
+
+@section scripts{
+	<script>
+		document.querySelector("#delete-employee").addEventListener("click",(event)=>{
+			event.preventDefault();//拦截提交 
+			const name = "@Model.ViewModel.Employee.Name"
+			const userConfirmation = confirm(`你想要删除员工:${name}吗`);
+			if(userConfirmation)
+			{
+				document.forms["delete-employee"].submit();//手动提交
+				
+			}
+		})
+	</script>
+}

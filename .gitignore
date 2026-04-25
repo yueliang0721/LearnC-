@@ -1,0 +1,9 @@
+# 自动排除 Visual Studio 缓存
+.vs/
+bin/
+obj/
+packages/
+*.user
+*.suo
+*.vsidx
+*.log

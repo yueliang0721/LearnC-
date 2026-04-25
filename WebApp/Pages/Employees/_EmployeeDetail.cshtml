@@ -1,0 +1,74 @@
+﻿@* 这里不写action地址 直接提交到引用当前partial的Page 记得加安全令牌 *@
+@model EmployeeViewModel
+@if (Model is not null && Model.Employee is not null)
+{
+	<form method="post">
+		@Html.AntiForgeryToken()
+		@if(ViewBag.Action == "Edit")
+		{
+			<div class="input-group mb-3">
+				<span class="input-group-text" id="inputGroup-sizing-default">Employee Id</span>
+				<input type="number" name="Employee.Id" value="@Model.Employee.Id" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" readonly>
+			</div>
+		}
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+			<input type="text" name="Employee.Name" value="@Model.Employee.Name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+		</div>
+
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="inputGroup-sizing-default">Position</span>
+			<input type="text" name="Employee.Position" value="@Model.Employee.Position" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+		</div>
+
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="inputGroup-sizing-default">Salary</span>
+			<input type="number" name="Employee.Salary" value="@Model.Employee.Salary" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+		</div>
+
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="inputGroup-sizing-default">Department</span>
+			@if(Model is not null && Model.departments is not null)
+			{
+				<select asp-for="Employee.DepartmentId"
+						asp-items='@Model.departments.Select(x=> new SelectListItem(){Text = x.Name,Value = x.Id.ToString(),Selected=(x.Id == Model.Employee.Id && ViewBag.Action=="Edit")} )'
+						class="form-control">
+					@if (ViewBag.Action == "Create")
+					{
+						<option value="0">-- Please Select --</option>
+					}
+				</select>
+			}
+				@* @if(Model.departments is not null)
+				{
+					@foreach (var department in Model.departments)//如果是Edit 就把当前员工部门给列出来并且选择
+					{
+						@if (ViewBag.Action == "Edit")
+						{
+							@if (Model.Employee.DepartmentId == department.Id)
+							{
+								<option selected value="@department.Id">@department.Name</option>
+							}
+							else
+							{
+								<option value="@department.Id">@department.Name</option>
+							}
+						}
+						else if (ViewBag.Action == "Create")
+						{
+							<option value="@department.Id">@department.Name</option>
+						}
+					}
+				} *@
+		</div>
+
+
+		<div class="mb-3 form-check">
+			<input type="checkbox" class="form-check-input" id="exampleCheck1">
+			<label class="form-check-label" for="exampleCheck1">Check me out</label>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+		<a class="btn btn-secondary" href="/Employees/index">Cancel</a>
+	</form>
+}
+

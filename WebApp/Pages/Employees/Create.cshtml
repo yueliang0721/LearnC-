@@ -1,0 +1,11 @@
+﻿@page
+@model WebApp.Pages.Employees.CreateModel
+@{
+	ViewBag.Action = "Create";
+}
+
+@section title_section{
+	<h3>Add Employee</h3>
+}
+
+<partial name="_EmployeeDetail" model="Model.EmployeeViewModel" />

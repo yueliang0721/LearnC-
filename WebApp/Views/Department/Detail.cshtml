@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Detail Department";
+    Layout = "_Layout";
+}
+@using WebApp.Model
+@model Department
+
+@if(Model is not null)
+{
+    <form action="/Department/UpdateDepartment" method="post">
+        <span>ID:</span>
+        <input name="id" value="@Model.Id" readonly />
+        <br />
+        <br />
+        <span>name:</span>
+        <input name="Name" value="@Model.Name" readonly />
+        <br />
+        <br />
+        <span>Describe:</span>
+        <input name="Describe" value="@Model.Describe" readonly />
+        <br />
+        <br />
+    </form>
+    <a href="/Employees/index" class="btn btn-secondary">Cancel</a>
+    
+    <a href="/Employees/DepartmentEmployees/@Model.Id" class="btn btn-link">Check Department Employees</a>
+}
+else
+{
+    @await Html.PartialAsync("Error")
+}
